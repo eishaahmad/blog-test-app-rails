@@ -5,4 +5,10 @@ Rails.application.routes.draw do
     resources :comments
   end
   root 'welcome#index'
+
+  constraints subdomain:"mobile_subdomain" do
+    resources :articles
+  end
+
+
 end

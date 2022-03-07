@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_082521) do
+ActiveRecord::Schema.define(version: 2022_03_03_081818) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string "color"
+    t.integer "Person_id"
+    t.index ["Person_id"], name: "index_cars_on_Person_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -26,6 +32,22 @@ ActiveRecord::Schema.define(version: 2022_02_28_082521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.string "name"
+    t.integer "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_friends_on_person_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.text "name"
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status"
   end
 
   create_table "users", force: :cascade do |t|

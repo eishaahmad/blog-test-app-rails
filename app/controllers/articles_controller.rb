@@ -8,6 +8,10 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    #respond_to do |format|
+      #format.html
+      #format.json {render json: @article.as_json(only: [:id, :title, :text], include: [:comments])}
+    #end
   end
 
   def new
@@ -19,6 +23,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    #byebug
     @article = Article.new(article_params)
 
     if @article.save
@@ -41,8 +46,9 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
+    
 
-    redirect_to articles_path
+    redirect_to articles_path, notice:  "You have successfully deleted the article"
   end
 
   private
